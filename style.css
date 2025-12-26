@@ -1,0 +1,79 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    height: 100vh;
+
+    background-color: hsl(240, 5%, 10%);
+    margin: 0;
+    padding: 0;
+}
+
+body > * {
+    margin: 10px;
+}
+
+#start {
+    background-color: hsl(0, 5%, 15%);
+    border: 5px solid black;    
+    padding: 10px;
+
+    color: hsl(0, 0%, 100%);
+    font-size: 50px;
+    font-weight: bolder;
+    letter-spacing: 5px;
+}
+
+label {
+    background-color: hsl(0, 5%, 15%);
+    border: 5px solid black;    
+    padding: 10px;
+
+    color: hsl(0, 0%, 100%);
+    font-size: 25px;
+    font-weight: bolder;
+    letter-spacing: 5px;
+}
+
+#gameInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    color: hsl(0, 0%, 100%);
+}
+
+#gameInfo > * {
+    margin: 0px;
+}
+
+#question {
+    background-color: hsl(240, 5%, 15%);
+    border: 5px solid black;    
+    padding: 5px;
+
+    color: hsl(0, 0%, 100%);
+    font-size: 50px;
+    font-weight: bolder;
+    letter-spacing: 5px;
+}
+
+#answer {
+    border: 5px solid black;
+
+    padding: 5px;
+    font-size: x-large;
+    font-weight: bolder;
+}
+
+#resultBox {
+    background-color: hsl(0, 100%, 50%);
+    border: 5px solid black;
+    padding: 50px;
+}
+
+.hidden {
+    display: none;
+}
