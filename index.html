@@ -8,24 +8,28 @@
         <title>Document</title>
     </head>
     <body>
-        <button type="button" id="start">Start</button>
+        <button type="button" id="startAddition" class="option menu">Plus</button>
+        <button type="button" id="startSubtraction" class="option menu">Minus</button>
 
-        <label for="hardDifficulty" id="hardDifficulty">Hard
+        <label id="medium" class="option menu">Medium
+            <input type="checkbox">
+        </label>
+        <label id="hard" class="option menu">Hard
             <input type="checkbox">
         </label>
         
         <h1 id="gameInfo">
-            <p id="score">Score: </p>
-            <p id="time">5:00</p>
+            <p id="score" class="game">Score: </p>
+            <p id="time" class="game">5:00</p>
         </h1>
 
-        <p id="question">15 + 4</p>
+        <p id="question" class="game">15 + 4</p>
 
-        <form id = "answerForm">
+        <form id = "answerForm" class="game">
             <input type="text" id="answer">
         </form>
 
-        <div id="resultBox"></div>
+        <div id="resultBox" class="game"></div>
     </body>
 
     <script src="main.js"></script>

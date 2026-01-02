@@ -14,26 +14,19 @@ body > * {
     margin: 10px;
 }
 
-#start {
+.option {
     background-color: hsl(0, 5%, 15%);
     border: 5px solid black;    
     padding: 10px;
 
     color: hsl(0, 0%, 100%);
-    font-size: 50px;
     font-weight: bolder;
+    font-size: 5vw;
     letter-spacing: 5px;
 }
 
 label {
-    background-color: hsl(0, 5%, 15%);
-    border: 5px solid black;    
-    padding: 10px;
-
-    color: hsl(0, 0%, 100%);
     font-size: 25px;
-    font-weight: bolder;
-    letter-spacing: 5px;
 }
 
 #gameInfo {

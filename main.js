@@ -4,12 +4,16 @@ const answerForm = document.getElementById("answerForm");
 const answerBox = document.getElementById("answer");
 const resultBox = document.getElementById("resultBox");
 const time = document.getElementById("time");
-const startButton = document.getElementById("start");
-const hardDifficulty = document.getElementById("hardDifficulty");
+
+const startAddition = document.getElementById("startAddition");
+const startSubtraction = document.getElementById("startSubtraction");
+const hard = document.getElementById("hard");
+const medium = document.getElementById("medium");
 
 const correctColor = "green";
 const incorrectColor = "red";
 
+let mode;
 let timer = 300;
 let scoreCount = 0;
 let answer;
@@ -18,11 +22,18 @@ let num2;
 
 hideGame();
 
-startButton.addEventListener('click', startGame);
+startAddition.addEventListener('click', () => {
+    mode = "addition";
+    startGame();
+});
+startSubtraction.addEventListener('click', () => {
+    mode = "subtraction";
+    startGame();
+});
 
 function startGame(){
-    startButton.classList.add("hidden");
-    hardDifficulty.classList.add("hidden");
+    hideMenu();
+    
     timer = 300;
     scoreCount = 0;
     score.innerText = `Score: ${scoreCount}`;
@@ -32,10 +43,8 @@ function startGame(){
 
 function stopGame(){
     hideGame();
+    showMenu();
     score.classList.remove("hidden");
-    startButton.classList.remove("hidden");
-    startButton.innerText = "Restart";
-    hardDifficulty.classList.remove("hidden");
 }
 
 const timerInterval = setInterval(() => {
@@ -46,20 +55,32 @@ const timerInterval = setInterval(() => {
     }
 }, 1000);
 
+function hideMenu(){
+    let elements = document.querySelectorAll(".menu");
+    elements.forEach(element => {
+        element.classList.add("hidden");
+    });
+}
+
+function showMenu(){
+    let elements = document.querySelectorAll(".menu");
+    elements.forEach(element => {
+        element.classList.remove("hidden");
+    });
+}
+
 function hideGame(){
-    score.classList.add("hidden");
-    question.classList.add("hidden");
-    answerForm.classList.add("hidden");
-    resultBox.classList.add("hidden");
-    time.classList.add("hidden");
+    let elements = document.querySelectorAll(".game");
+    elements.forEach(element => {
+        element.classList.add("hidden");
+    });
 }
 
 function showGame(){
-    score.classList.remove("hidden");
-    question.classList.remove("hidden");
-    answerForm.classList.remove("hidden");
-    resultBox.classList.remove("hidden");
-    time.classList.remove("hidden");
+    let elements = document.querySelectorAll(".game");
+    elements.forEach(element => {
+        element.classList.remove("hidden");
+    });
 }
 
 function displayTime() {
@@ -68,20 +89,56 @@ function displayTime() {
     time.innerText = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 }
 
-
 function generateRandomQuestion() {
-    if(hardDifficulty.children[0].checked){
-        answer = randInt(21, 99);
-        num1 = randInt(10, answer - 10);
-        num2 = answer - num1;
-    } else {
-        answer = randInt(1, 20);
-        num1 = randInt(1, answer);
-        num2 = answer - num1;
+    const isHard = hard.children[0].checked;
+    const isMedium = medium.children[0].checked;
+
+    if (mode === "addition") {
+
+        if (isHard) {
+            answer = randInt(21, 99);
+            num1 = randInt(10, answer - 10);
+            num2 = answer - num1;
+        } 
+        else if (isMedium) {
+            const tens = randInt(2, 9);
+            const ones = randInt(0, 9);
+            num1 = tens * 10 + ones;
+            num2 = randInt(1, 9 - tens) * 10 + randInt(0, 9 - ones);
+            answer = num1 + num2;
+        } 
+        else {
+            answer = randInt(2, 20);
+            num1 = randInt(1, answer);
+            num2 = answer - num1;
+        }
+
+        question.innerText = `${num1} + ${num2}`;
     }
 
-    question.innerText = `${num1} + ${num2}`;
+    if (mode === "subtraction") {
+
+        if (isHard) {
+            num1 = randInt(21, 99);
+            num2 = randInt(10, num1 - 1);
+        } 
+        else if (isMedium) {
+            const tens = randInt(2, 9);
+            const ones = randInt(0, 9);
+            num1 = tens * 10 + ones;
+            num2 = randInt(2, tens - 1) * 10 + randInt(0, ones);
+            answer = num1 - num2;
+        } 
+        else {
+            num1 = randInt(2, 20);
+            num2 = randInt(1, num1 - 1);
+        }
+
+        answer = num1 - num2;
+        question.innerText = `${num1} - ${num2}`;
+    }
 }
+
 
 function randInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
