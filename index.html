@@ -5,18 +5,15 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="style.css">
-        <title>Document</title>
+        <title>Math Game</title>
     </head>
     <body>
-        <button type="button" id="startAddition" class="option menu">Plus</button>
-        <button type="button" id="startSubtraction" class="option menu">Minus</button>
+        <button type="button" id="startAddition" class="mode">Plus</button>
+        <button type="button" id="startSubtraction" class="mode">Minus</button>
+        <button type="button" id="startMultiplication" class="mode">Mal</button>
+        <button type="button" id="startDivision" class="mode">Teilen</button>
 
-        <label id="medium" class="option menu">Medium
-            <input type="checkbox">
-        </label>
-        <label id="hard" class="option menu">Hard
-            <input type="checkbox">
-        </label>
+        <div id="modeOptions"></div>
         
         <h1 id="gameInfo">
             <p id="score" class="game">Score: </p>
@@ -25,11 +22,27 @@
 
         <p id="question" class="game">15 + 4</p>
 
-        <form id = "answerForm" class="game">
-            <input type="text" id="answer">
-        </form>
+        <div id="inputBox" class="game">
+            <button type="button" id="tensInput"></button>
+            <button type="button" id="onesInput"></button>
+        </div>
 
         <div id="resultBox" class="game"></div>
+
+        <div id="keyboard" class="game">
+            <button type="button">0</button>
+            <button type="button">1</button>
+            <button type="button">2</button>
+            <button type="button">3</button>
+            <button type="button">4</button>
+            <button type="button">5</button>
+            <button type="button">6</button>
+            <button type="button">7</button>
+            <button type="button">8</button>
+            <button type="button">9</button>
+        </div>
+
+        <button type="button" id="submitButton" class="game">-></button>
     </body>
 
     <script src="main.js"></script>
