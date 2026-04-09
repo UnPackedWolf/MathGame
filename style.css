@@ -87,7 +87,7 @@ button {
 }
 
 .selected {
-    border: 5px solid white;
+    border: 5px solid darkred !important;
 }
 
 .hidden {

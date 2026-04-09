@@ -217,7 +217,7 @@ let num1;
 let num2;
 let selectedMode;
 let selectedOptions = [];
-let selectedKey;
+let selectedInputField;
 
 Object.values(modes).forEach(mode => {
     mode.el.addEventListener("click", () => {
@@ -252,27 +252,26 @@ Object.values(modes).forEach(mode => {
 
 Array.from(keyboard.children).forEach(button => {
     button.addEventListener("click", () => {
-        OnKeyboardClick(button);
+        selectedInputField.innerText = button.innerText;
     });
 })
 
 Array.from(inputBox.children).forEach(button => {
     button.addEventListener("click", () => {
-        if(selectedKey != undefined){
-            button.innerHTML = selectedKey;
-        }
+        changeSelectedInputField(button);
     });
 })
 
 hideGameUI();
 
-function OnKeyboardClick(clickedButton){
-    Array.from(keyboard.children).forEach(button => {
+changeSelectedInputField(inputBox.children[1]);
+
+function changeSelectedInputField(button){
+    Array.from(inputBox.children).forEach(button => {
         button.classList.remove("selected");
     })
-
-    clickedButton.classList.add("selected");
-    selectedKey = clickedButton.innerText;
+    button.classList.add("selected");
+    selectedInputField = button;
 }
 
 function startGame(){
@@ -354,7 +353,7 @@ function generateRandomQuestion() {
 }
 
 submitButton.addEventListener('click', () => {    
-    let input = parseInt(inputBox.children[0].innerText) * 10 + parseInt(inputBox.children[1].innerText);
+    let input = (parseInt(inputBox.children[0].innerText) || 0) * 10 + parseInt(inputBox.children[1].innerText);
 
     if(input == (answer)){
         resultBox.style.backgroundColor = correctColor;
@@ -365,6 +364,7 @@ submitButton.addEventListener('click', () => {
 
     inputBox.children[0].innerText = "";
     inputBox.children[1].innerText = "";
+    changeSelectedInputField(inputBox.children[1]);
     generateRandomQuestion();
 });
 
